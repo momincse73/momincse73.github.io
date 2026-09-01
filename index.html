@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD AL MOMIN — Software Engineer in the making</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#050b18;
+    --bg-1:#0b1730;
+    --bg-2:#122142;
+    --line:#22315a;
+    --blue-deep:#13294b;
+    --blue-mid:#3e7cb1;
+    --blue-bright:#5aa9ff;
+    --blue-glow:#8ecbff;
+    --text-0:#eaf2fb;
+    --text-1:#a9bcd6;
+    --text-2:#6d80a3;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(62,124,177,0.18), transparent 60%),
+      radial-gradient(900px 500px at 100% 10%, rgba(90,169,255,0.10), transparent 55%),
+      var(--bg-0);
+    color:var(--text-0);
+    font-family:var(--sans);
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; }
+
+  ::selection{ background:var(--blue-mid); color:#fff; }
+
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(5,11,24,0.72);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:880px; margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-mark{
+    font-family:var(--mono); font-size:14px; color:var(--blue-glow);
+    display:flex; align-items:center; gap:8px;
+  }
+  .nav-mark .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--blue-bright);
+    box-shadow:0 0 8px var(--blue-bright);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:.4; transform:scale(0.7); }
+  }
+  .nav-links{ display:flex; gap:26px; font-size:14px; }
+  .nav-links a{
+    text-decoration:none; color:var(--text-1);
+    position:relative; padding:2px 0;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{ color:var(--text-0); }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-3px;
+    width:0%; height:1px; background:var(--blue-bright);
+    transition:width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:110px 0 90px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-eyebrow{
+    font-family:var(--mono); font-size:13px; color:var(--blue-mid);
+    margin-bottom:22px;
+  }
+  .hero-eyebrow .prompt{ color:var(--blue-glow); }
+
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.3rem);
+    font-weight:700;
+    letter-spacing:-0.02em;
+    line-height:1.06;
+    max-width:11ch;
+  }
+  .hero h1 .accent{
+    background:linear-gradient(100deg, var(--blue-bright), var(--blue-glow) 60%, #cfe8ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+
+  .type-line{
+    margin-top:26px;
+    font-family:var(--mono);
+    font-size:clamp(1rem,2.4vw,1.2rem);
+    color:var(--text-1);
+    min-height:1.6em;
+  }
+  .type-line .cursor{
+    display:inline-block; width:9px; height:1.05em;
+    background:var(--blue-bright); margin-left:2px;
+    vertical-align:-2px;
+    animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .hero-meta{
+    margin-top:44px;
+    display:flex; gap:36px; flex-wrap:wrap;
+    font-size:14px; color:var(--text-2);
+  }
+  .hero-meta div{ display:flex; flex-direction:column; gap:4px; }
+  .hero-meta span.label{
+    font-family:var(--mono); font-size:11.5px; color:var(--text-2);
+  }
+  .hero-meta span.value{ color:var(--text-0); font-size:15px; }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section{ padding:80px 0; border-bottom:1px solid var(--line); }
+  .section:last-of-type{ border-bottom:none; }
+  .section-head{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:44px;
+  }
+  .section-num{
+    font-family:var(--mono); font-size:13px; color:var(--blue-mid);
+  }
+  .section-title{
+    font-size:1.65rem; font-weight:600; letter-spacing:-0.01em;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-text{
+    font-size:1.08rem; color:var(--text-1); max-width:62ch;
+    line-height:1.75;
+  }
+  .about-text strong{ color:var(--text-0); font-weight:600; }
+
+  .tags{
+    margin-top:28px; display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .tag{
+    font-family:var(--mono); font-size:12.5px;
+    color:var(--blue-glow);
+    border:1px solid var(--line);
+    background:var(--bg-1);
+    padding:6px 12px; border-radius:5px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .tag:hover{ border-color:var(--blue-mid); transform:translateY(-2px); }
+
+  /* ---------- TIMELINE (journey is a real sequence) ---------- */
+  .timeline{ position:relative; margin-top:8px; }
+  .timeline::before{
+    content:''; position:absolute; left:19px; top:6px; bottom:6px;
+    width:1px; background:linear-gradient(var(--blue-mid), transparent 95%);
+    opacity:.5;
+  }
+  .t-item{
+    position:relative; padding:0 0 40px 56px;
+    opacity:0; transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item.show{ opacity:1; transform:translateY(0); }
+  .t-num{
+    position:absolute; left:0; top:0;
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--bg-1);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:12px; color:var(--blue-bright);
+  }
+  .t-year{
+    font-family:var(--mono); font-size:12.5px; color:var(--blue-mid);
+    margin-bottom:6px;
+  }
+  .t-title{ font-size:1.12rem; font-weight:600; margin-bottom:5px; }
+  .t-sub{ color:var(--text-2); font-size:14.5px; }
+
+  /* ---------- GOALS ---------- */
+  .goal-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .goal-card{
+    background:var(--bg-1);
+    padding:28px 24px;
+    transition:background .25s ease;
+  }
+  .goal-card:hover{ background:var(--bg-2); }
+  .goal-icon{
+    width:34px; height:34px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+  }
+  .goal-icon svg{ width:100%; height:100%; }
+  .goal-title{ font-weight:600; font-size:1.02rem; margin-bottom:8px; }
+  .goal-desc{ font-size:13.5px; color:var(--text-2); line-height:1.6; }
+
+  @media (max-width:700px){
+    .goal-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- TERMINAL PANEL ---------- */
+  .terminal{
+    background:var(--bg-1);
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:10px;
+  }
+  .terminal-bar{
+    display:flex; align-items:center; gap:7px;
+    padding:11px 14px;
+    border-bottom:1px solid var(--line);
+    background:var(--bg-2);
+  }
+  .terminal-bar span{
+    width:10px; height:10px; border-radius:50%;
+    background:#2a3d64;
+  }
+  .terminal-bar span:nth-child(1){ background:#4a5f8a; }
+  .terminal-body{
+    padding:22px 24px;
+    font-family:var(--mono); font-size:13.5px;
+    color:var(--text-1);
+  }
+  .terminal-body .k{ color:var(--blue-glow); }
+  .terminal-body .s{ color:#9fd6a3; }
+  .terminal-body .c{ color:var(--text-2); }
+  .terminal-body div{ margin-bottom:4px; white-space:pre-wrap; }
+
+  /* ---------- FOOTER / CONTACT ---------- */
+  footer{ padding:70px 0 60px; }
+  .footer-title{
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    font-weight:700; letter-spacing:-0.02em;
+    max-width:14ch; margin-bottom:22px;
+  }
+  .footer-sub{ color:var(--text-1); max-width:50ch; margin-bottom:34px; }
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+    padding-top:26px; border-top:1px solid var(--line);
+    font-family:var(--mono); font-size:12.5px; color:var(--text-2);
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-size:14px; color:var(--bg-0);
+    background:var(--blue-bright);
+    padding:12px 20px; border-radius:6px;
+    text-decoration:none; font-weight:600;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 8px 24px rgba(90,169,255,0.28); }
+
+  @media (max-width:600px){
+    .hero{ padding:80px 0 60px; }
+    .section{ padding:60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark"><span class="dot"></span> md-al-momin.dev</div>
+    <nav class="nav-links">
+      <a href="#about">about</a>
+      <a href="#journey">journey</a>
+      <a href="#goals">goals</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div class="hero-eyebrow"><span class="prompt">~/momin$</span> whoami</div>
+  <h1>MD AL MOMIN<br><span class="accent">builds software.</span></h1>
+  <div class="type-line" id="typeLine"><span class="cursor"></span></div>
+
+  <div class="hero-meta">
+    <div>
+      <span class="label">BASED IN</span>
+      <span class="value">Khulna, Bangladesh</span>
+    </div>
+    <div>
+      <span class="label">STUDYING</span>
+      <span class="value">B.Sc. in CSE, Southeast University</span>
+    </div>
+    <div>
+      <span class="label">FOCUS</span>
+      <span class="value">Programming &amp; Software Engineering</span>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="about">
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <span class="section-title">About</span>
+  </div>
+  <p class="about-text">
+    I'm <strong>MD AL MOMIN</strong>, a computer science student from <strong>Khulna</strong>
+    who's genuinely passionate about programming — not just as a subject I study, but
+    as the thing I keep coming back to outside of class too. I'm currently pursuing my
+    <strong>B.Sc. in Computer Science and Engineering</strong> at
+    <strong>Southeast University</strong>, building the foundation for the career I want:
+    one where I'm writing software that matters, at a level that keeps challenging me.
+  </p>
+  <div class="tags">
+    <span class="tag">#problem-solving</span>
+    <span class="tag">#software-engineering</span>
+    <span class="tag">#lifelong-learner</span>
+    <span class="tag">#future-grad-student</span>
+  </div>
+</section>
+
+<section class="section wrap" id="journey">
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <span class="section-title">Journey so far</span>
+  </div>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-num">01</div>
+      <div class="t-year">2022</div>
+      <div class="t-title">SSC — Khulna Zilla School</div>
+      <div class="t-sub">Completed secondary education in Khulna.</div>
+    </div>
+    <div class="t-item">
+      <div class="t-num">02</div>
+      <div class="t-year">2024</div>
+      <div class="t-title">HSC — Govt. Sundarban Adarsha College</div>
+      <div class="t-sub">Completed higher secondary education.</div>
+    </div>
+    <div class="t-item">
+      <div class="t-num">03</div>
+      <div class="t-year">Present</div>
+      <div class="t-title">B.Sc. in CSE — Southeast University</div>
+      <div class="t-sub">Currently studying, with a growing focus on software engineering.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap" id="goals">
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <span class="section-title">Where I'm headed</span>
+  </div>
+
+  <div class="goal-grid">
+    <div class="goal-card">
+      <div class="goal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5aa9ff" stroke-width="1.6"><path d="M4 17l6-6-6-6M12 19h8"/></svg>
+      </div>
+      <div class="goal-title">Software Engineer</div>
+      <div class="goal-desc">Turn my current CSE studies into a career actually writing and shipping software.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5aa9ff" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2c2.7 2.6 4 5.9 4 10s-1.3 7.4-4 10c-2.7-2.6-4-5.9-4-10s1.3-7.4 4-10z"/></svg>
+      </div>
+      <div class="goal-title">MSc &amp; PhD Abroad</div>
+      <div class="goal-desc">Go abroad to pursue graduate study and go deeper into the field than a bachelor's allows.</div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5aa9ff" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+      </div>
+      <div class="goal-title">A Tech Giant</div>
+      <div class="goal-desc">Work at a major technology company, building products used at real scale.</div>
+    </div>
+  </div>
+
+  <div class="terminal">
+    <div class="terminal-bar"><span></span><span></span><span></span></div>
+    <div class="terminal-body">
+      <div><span class="c">// current status</span></div>
+      <div><span class="k">const</span> momin = {</div>
+      <div>&nbsp;&nbsp;name: <span class="s">"MD AL MOMIN"</span>,
+      role: <span class="s">"CSE Undergrad"</span>,</div>
+      <div>&nbsp;&nbsp;passion: <span class="s">"programming"</span>,</div>
+      <div>&nbsp;&nbsp;status: <span class="s">"building skills, chasing goals"</span>,</div>
+      <div>&nbsp;&nbsp;openTo: [<span class="s">"internships"</span>, <span class="s">"projects"</span>, <span class="s">"mentorship"</span>]</div>
+      <div>};</div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap" id="contact">
+  <div class="footer-title">Let's build something, or just talk code.</div>
+  <p class="footer-sub">
+    I'm always glad to connect with people who care about software — whether that's a project,
+    an opportunity, or advice on the path ahead.
+  </p>
+  <a class="btn" href="mailto:hello@example.com">Say hello →</a>
+
+  <div class="footer-row">
+    <span>© 2026 MD AL MOMIN. Khulna, Bangladesh.</span>
+    <span id="clock"></span>
+  </div>
+</footer>
+
+<script>
+  // Typing effect
+  const lines = [
+    "passionate about programming, one commit at a time.",
+    "currently: B.Sc. in CSE @ Southeast University.",
+    "next: software engineer, then grad school abroad."
+  ];
+  const el = document.getElementById('typeLine');
+  const cursor = el.querySelector('.cursor');
+  let li = 0, ci = 0, deleting = false;
+
+  function tick(){
+    const current = lines[li];
+    if(!deleting){
+      ci++;
+      if(ci > current.length){
+        deleting = true;
+        setTimeout(tick, 1400);
+        return;
+      }
+    } else {
+      ci--;
+      if(ci < 0){
+        deleting = false;
+        li = (li + 1) % lines.length;
+        ci = 0;
+      }
+    }
+    el.textContent = current.slice(0, ci);
+    el.appendChild(cursor);
+    setTimeout(tick, deleting ? 28 : 42);
+  }
+  tick();
+
+  // Scroll reveal for timeline
+  const items = document.querySelectorAll('.t-item');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('show');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  items.forEach(i => io.observe(i));
+
+  // Live clock (Bangladesh time)
+  function updateClock(){
+    const now = new Date();
+    const opts = { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false, timeZone:'Asia/Dhaka' };
+    document.getElementById('clock').textContent = 'Dhaka time — ' + now.toLocaleTimeString('en-GB', opts);
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
