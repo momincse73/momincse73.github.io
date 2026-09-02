@@ -4,511 +4,542 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MD AL MOMIN — Software Engineer in the making</title>
+<meta name="description" content="Portfolio of MD AL MOMIN, CSE undergraduate at Southeast University, Dhaka. From Khulna to global software engineering.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+
   :root{
-    --bg-0:#080302;
-    --bg-1:#150605;
-    --bg-2:#210807;
-    --line:#3a0f0d;
-    --red-deep:#4d0a0a;
-    --red-mid:#a3131a;
-    --red-bright:#ff3b30;
-    --red-glow:#ff6b52;
-    --ember:#ffab5e;
-    --text-0:#f6e9e6;
-    --text-1:#c9a29c;
-    --text-2:#7c5652;
-    --mono:'JetBrains Mono', monospace;
-    --sans:'Inter', sans-serif;
-    --display:'Cinzel', serif;
+    --bg-deep:   #07211A;
+    --bg-panel:  #0E2C22;
+    --bg-panel-2:#123626;
+    --teal:      #1F6F5C;
+    --teal-soft: #2C8A72;
+    --gold:      #E8A33D;
+    --clay:      #D9704F;
+    --sand:      #F3EFE4;
+    --sand-dim:  #A9BAB0;
+    --line:      rgba(243,239,228,0.14);
+
+    --serif: 'Fraunces', serif;
+    --sans:  'Space Grotesk', sans-serif;
+    --mono:  'IBM Plex Mono', monospace;
   }
 
-  *{ box-sizing:border-box; margin:0; padding:0; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
   html{ scroll-behavior:smooth; }
 
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
   body{
-    background:
-      radial-gradient(900px 500px at 20% -8%, rgba(163,19,26,0.28), transparent 60%),
-      radial-gradient(700px 500px at 100% 15%, rgba(255,59,48,0.14), transparent 55%),
-      var(--bg-0);
-    color:var(--text-0);
+    background:var(--bg-deep);
+    color:var(--sand);
     font-family:var(--sans);
-    line-height:1.55;
+    line-height:1.6;
     overflow-x:hidden;
-    position:relative;
   }
 
-  a{ color:inherit; }
-  ::selection{ background:var(--red-mid); color:#fff; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
 
-  .wrap{ max-width:880px; margin:0 auto; padding:0 28px; }
-
-  /* ---------- EMBER PARTICLES ---------- */
-  #embers{
-    position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden;
-  }
-  .ember{
-    position:absolute; bottom:-20px;
-    width:4px; height:4px; border-radius:50%;
-    background:var(--ember);
-    box-shadow:0 0 8px 2px rgba(255,171,94,0.65);
-    opacity:0;
-    animation:rise linear infinite;
-  }
-  @keyframes rise{
-    0%{ transform:translateY(0) translateX(0); opacity:0; }
-    8%{ opacity:.9; }
-    90%{ opacity:.5; }
-    100%{ transform:translateY(-110vh) translateX(var(--drift,20px)); opacity:0; }
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
   }
 
-  /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky; top:0; z-index:50;
+  /* ---------- texture ---------- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:999;
+    opacity:0.035; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
     backdrop-filter:blur(10px);
-    background:rgba(8,3,2,0.75);
+    background:rgba(7,33,26,0.72);
     border-bottom:1px solid var(--line);
   }
-  .nav-inner{
-    max-width:880px; margin:0 auto; padding:16px 28px;
+  nav.wrap{
     display:flex; align-items:center; justify-content:space-between;
+    height:76px;
   }
-  .nav-mark{
-    font-family:var(--mono); font-size:14px; color:var(--red-glow);
-    display:flex; align-items:center; gap:8px;
-  }
-  .nav-mark .dot{
-    width:7px; height:7px; border-radius:50%;
-    background:var(--red-bright);
-    box-shadow:0 0 10px var(--red-bright);
-    animation:heartbeat 1.8s ease-in-out infinite;
-  }
-  @keyframes heartbeat{
-    0%,100%{ opacity:1; transform:scale(1); }
-    45%{ opacity:.35; transform:scale(0.6); }
-  }
-  .nav-links{ display:flex; gap:26px; font-size:14px; position:relative; z-index:2; }
-  .nav-links a{
-    text-decoration:none; color:var(--text-1);
-    position:relative; padding:2px 0;
-    transition:color .2s ease;
-  }
-  .nav-links a:hover{ color:var(--red-glow); }
-  .nav-links a::after{
-    content:''; position:absolute; left:0; bottom:-3px;
-    width:0%; height:1px; background:var(--red-bright);
-    transition:width .25s ease;
-  }
-  .nav-links a:hover::after{ width:100%; }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    padding:120px 0 100px;
-    border-bottom:1px solid var(--line);
-    position:relative; z-index:2;
-  }
-  .hero-eyebrow{
-    font-family:var(--mono); font-size:13px; color:var(--red-mid);
-    margin-bottom:26px; letter-spacing:.02em;
-  }
-  .hero-eyebrow .prompt{ color:var(--red-glow); }
-
-  .hero h1{
-    font-family:var(--display);
-    font-size:clamp(2.4rem, 6.4vw, 4.4rem);
-    font-weight:700;
-    letter-spacing:.01em;
-    line-height:1.12;
-  }
-  .hero h1 .accent{
-    display:inline-block;
-    background:linear-gradient(100deg, var(--red-bright), var(--ember) 55%, var(--red-glow));
-    background-size:200% auto;
-    -webkit-background-clip:text; background-clip:text; color:transparent;
-    animation:flicker 3.2s ease-in-out infinite;
-    text-shadow:0 0 34px rgba(255,59,48,0.25);
-  }
-  @keyframes flicker{
-    0%,100%{ background-position:0% 50%; filter:brightness(1); }
-    45%{ background-position:100% 50%; filter:brightness(1.18); }
-    60%{ filter:brightness(0.92); }
-  }
-
-  .type-line{
-    margin-top:28px;
-    font-family:var(--mono);
-    font-size:clamp(1rem,2.4vw,1.2rem);
-    color:var(--text-1);
-    min-height:1.6em;
-  }
-  .type-line .cursor{
-    display:inline-block; width:9px; height:1.05em;
-    background:var(--red-bright); margin-left:2px;
-    vertical-align:-2px;
-    box-shadow:0 0 8px var(--red-bright);
-    animation:blink 1s step-end infinite;
-  }
-  @keyframes blink{ 50%{ opacity:0; } }
-
-  .hero-meta{
-    margin-top:46px;
-    display:flex; gap:36px; flex-wrap:wrap;
-    font-size:14px; color:var(--text-2);
-  }
-  .hero-meta div{ display:flex; flex-direction:column; gap:4px; }
-  .hero-meta span.label{ font-family:var(--mono); font-size:11.5px; color:var(--text-2); }
-  .hero-meta span.value{ color:var(--text-0); font-size:15px; }
-
-  /* ---------- SECTIONS ---------- */
-  .section{ padding:84px 0; border-bottom:1px solid var(--line); position:relative; z-index:2; }
-  .section:last-of-type{ border-bottom:none; }
-  .section-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:46px; }
-  .section-num{ font-family:var(--mono); font-size:13px; color:var(--red-mid); }
-  .section-title{
-    font-family:var(--display);
-    font-size:1.7rem; font-weight:600; letter-spacing:.01em;
-  }
-
-  /* ---------- ABOUT ---------- */
-  .about-text{ font-size:1.08rem; color:var(--text-1); max-width:62ch; line-height:1.8; }
-  .about-text strong{ color:var(--text-0); font-weight:600; }
-
-  .tags{ margin-top:30px; display:flex; flex-wrap:wrap; gap:10px; }
-  .tag{
-    font-family:var(--mono); font-size:12.5px;
-    color:var(--red-glow);
-    border:1px solid var(--line);
-    background:var(--bg-1);
-    padding:6px 12px; border-radius:5px;
-    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
-  }
-  .tag:hover{
-    border-color:var(--red-mid); transform:translateY(-2px);
-    box-shadow:0 6px 18px rgba(163,19,26,0.35);
-  }
-
-  /* ---------- TIMELINE ---------- */
-  .timeline{ position:relative; margin-top:8px; }
-  .timeline::before{
-    content:''; position:absolute; left:19px; top:6px; bottom:6px;
-    width:1px; background:linear-gradient(var(--red-mid), transparent 95%);
-    opacity:.6;
-  }
-  .t-item{
-    position:relative; padding:0 0 42px 56px;
-    opacity:0; transform:translateY(16px);
-    transition:opacity .6s ease, transform .6s ease;
-  }
-  .t-item:last-child{ padding-bottom:0; }
-  .t-item.show{ opacity:1; transform:translateY(0); }
-  .t-num{
-    position:absolute; left:0; top:0;
-    width:40px; height:40px; border-radius:50%;
-    border:1px solid var(--line);
-    background:var(--bg-1);
+  .monogram{
+    width:42px; height:42px; border-radius:50%;
+    border:1px solid var(--teal-soft);
     display:flex; align-items:center; justify-content:center;
-    font-family:var(--mono); font-size:12px; color:var(--red-bright);
-    transition:box-shadow .3s ease, border-color .3s ease;
+    font-family:var(--serif); font-size:16px; letter-spacing:0.03em;
+    color:var(--gold);
   }
-  .t-item.show .t-num{
-    border-color:var(--red-mid);
-    box-shadow:0 0 16px rgba(255,59,48,0.35);
+  .navlinks{ display:flex; gap:36px; font-size:14.5px; color:var(--sand-dim); }
+  .navlinks a{ position:relative; padding:4px 0; transition:color .25s ease; }
+  .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px;
+    background:var(--gold); transition:width .3s ease;
   }
-  .t-year{ font-family:var(--mono); font-size:12.5px; color:var(--red-mid); margin-bottom:6px; }
-  .t-title{ font-size:1.12rem; font-weight:600; margin-bottom:5px; }
-  .t-sub{ color:var(--text-2); font-size:14.5px; }
+  .navlinks a:hover, .navlinks a.active{ color:var(--sand); }
+  .navlinks a:hover::after, .navlinks a.active::after{ width:100%; }
+  .navtoggle{ display:none; }
 
-  /* ---------- GOALS ---------- */
-  .goal-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
-    background:var(--line); border:1px solid var(--line);
-    border-radius:10px; overflow:hidden;
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding-top:76px;
+    overflow:hidden;
   }
-  .goal-card{
-    background:var(--bg-1); padding:30px 24px;
-    transition:background .25s ease, transform .25s ease;
+  .hero-canvas{
+    position:absolute; inset:0; z-index:0;
+    opacity:0.9;
   }
-  .goal-card:hover{ background:var(--bg-2); transform:translateY(-3px); }
-  .goal-icon{ width:34px; height:34px; margin-bottom:18px; }
-  .goal-icon svg{ width:100%; height:100%; filter:drop-shadow(0 0 6px rgba(255,59,48,0.4)); }
-  .goal-title{ font-weight:600; font-size:1.02rem; margin-bottom:8px; }
-  .goal-desc{ font-size:13.5px; color:var(--text-2); line-height:1.65; }
-
-  @media (max-width:700px){ .goal-grid{ grid-template-columns:1fr; } }
-
-  /* ---------- TERMINAL PANEL ---------- */
-  .terminal{
-    background:var(--bg-1); border:1px solid var(--line);
-    border-radius:10px; overflow:hidden; margin-top:10px;
-    box-shadow:0 0 40px rgba(163,19,26,0.08);
+  .hero-canvas svg{ width:100%; height:100%; display:block; }
+  .hero-content{ position:relative; z-index:2; }
+  .eyebrow-line{
+    display:flex; align-items:center; gap:14px;
+    color:var(--sand-dim); font-size:14px; margin-bottom:26px;
   }
-  .terminal-bar{
-    display:flex; align-items:center; gap:7px; padding:11px 14px;
-    border-bottom:1px solid var(--line); background:var(--bg-2);
+  .eyebrow-line span.dot{
+    width:7px; height:7px; border-radius:50%; background:var(--gold);
+    box-shadow:0 0 0 4px rgba(232,163,61,0.18);
   }
-  .terminal-bar span{ width:10px; height:10px; border-radius:50%; background:#4a2422; }
-  .terminal-bar span:nth-child(1){ background:var(--red-mid); }
-  .terminal-body{
-    padding:22px 24px; font-family:var(--mono); font-size:13.5px; color:var(--text-1);
+  h1.name{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(48px, 8.6vw, 108px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    color:var(--sand);
+    max-width:14ch;
   }
-  .terminal-body .k{ color:var(--red-glow); }
-  .terminal-body .s{ color:var(--ember); }
-  .terminal-body .c{ color:var(--text-2); }
-  .terminal-body div{ margin-bottom:4px; white-space:pre-wrap; }
-
-  /* ---------- FOOTER ---------- */
-  footer{ padding:74px 0 60px; position:relative; z-index:2; }
-  .footer-title{
-    font-family:var(--display);
-    font-size:clamp(1.7rem,4vw,2.5rem);
-    font-weight:700; letter-spacing:.01em;
-    max-width:15ch; margin-bottom:22px;
+  h1.name em{ font-style:italic; color:var(--gold); font-weight:400; }
+  .hero-role{
+    margin-top:26px;
+    font-size:clamp(17px, 2vw, 21px);
+    color:var(--sand-dim);
+    max-width:46ch;
   }
-  .footer-sub{ color:var(--text-1); max-width:50ch; margin-bottom:34px; }
-  .footer-row{
-    display:flex; justify-content:space-between; align-items:center;
-    flex-wrap:wrap; gap:16px;
-    padding-top:26px; border-top:1px solid var(--line);
-    font-family:var(--mono); font-size:12.5px; color:var(--text-2);
+  .hero-role strong{ color:var(--sand); font-weight:600; }
+  .hero-cta{
+    margin-top:44px;
+    display:flex; gap:18px; flex-wrap:wrap;
   }
-
   .btn{
     display:inline-flex; align-items:center; gap:10px;
-    font-family:var(--mono); font-size:14px; color:#1a0403;
-    background:linear-gradient(100deg, var(--red-bright), var(--ember));
-    padding:13px 22px; border-radius:6px;
-    text-decoration:none; font-weight:700;
-    transition:transform .2s ease, box-shadow .2s ease;
+    padding:14px 26px;
+    border-radius:2px;
+    font-size:15px; font-weight:500;
+    transition:transform .3s cubic-bezier(.2,.8,.2,1), background .3s ease, border-color .3s ease;
   }
-  .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(255,59,48,0.38); }
+  .btn-solid{ background:var(--gold); color:var(--bg-deep); }
+  .btn-solid:hover{ transform:translateY(-3px); background:#f0b158; }
+  .btn-outline{ border:1px solid var(--line); color:var(--sand); }
+  .btn-outline:hover{ transform:translateY(-3px); border-color:var(--teal-soft); }
 
-  @media (max-width:600px){
-    .hero{ padding:90px 0 60px; }
-    .section{ padding:60px 0; }
+  .scrollcue{
+    position:absolute; bottom:38px; left:32px; z-index:2;
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-size:12px; color:var(--sand-dim);
+  }
+  .scrollcue .stem{
+    width:1px; height:40px; background:linear-gradient(var(--teal-soft), transparent);
+    position:relative; overflow:hidden;
+  }
+  .scrollcue .stem::after{
+    content:''; position:absolute; top:-40px; left:0; width:100%; height:40px;
+    background:linear-gradient(var(--gold), transparent);
+    animation:flow 2.6s ease-in-out infinite;
+  }
+  @keyframes flow{
+    0%{ transform:translateY(0); }
+    100%{ transform:translateY(80px); }
+  }
+
+  /* ---------- section shell ---------- */
+  section{ position:relative; padding:132px 0; }
+  .section-head{
+    display:flex; align-items:baseline; gap:20px;
+    margin-bottom:64px;
+  }
+  .section-num{
+    font-family:var(--mono); font-size:13px; color:var(--gold);
+  }
+  h2{
+    font-family:var(--serif); font-weight:500;
+    font-size:clamp(30px, 4vw, 44px);
+    color:var(--sand);
+  }
+  .section-sub{
+    color:var(--sand-dim); max-width:56ch; margin-top:18px; font-size:16px;
+  }
+
+  /* ---------- journey / timeline ---------- */
+  .journey{ background:var(--bg-panel); }
+  .timeline{
+    position:relative;
+    padding-left:36px;
+    border-left:1px solid var(--line);
+  }
+  .tl-item{
+    position:relative;
+    padding-bottom:56px;
+    opacity:0; transform:translateX(-16px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .tl-item.in-view{ opacity:1; transform:translateX(0); }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:''; position:absolute; left:-42px; top:6px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--bg-panel); border:2px solid var(--teal-soft);
+    transition:background .3s ease, border-color .3s ease;
+  }
+  .tl-item.in-view::before{ background:var(--gold); border-color:var(--gold); }
+  .tl-year{
+    font-family:var(--mono); font-size:13px; color:var(--gold); letter-spacing:0.02em;
+  }
+  .tl-title{
+    font-family:var(--serif); font-size:24px; font-weight:500; margin-top:8px; color:var(--sand);
+  }
+  .tl-place{ color:var(--sand-dim); font-size:15px; margin-top:6px; }
+  .tl-tag{
+    display:inline-block; margin-top:14px; font-size:12.5px;
+    color:var(--teal-soft); border:1px solid var(--teal); border-radius:999px;
+    padding:5px 14px;
+  }
+
+  /* ---------- focus ---------- */
+  .focus-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .focus-card{
+    background:var(--bg-deep);
+    padding:38px 30px;
+    border-top:3px solid transparent;
+    transition:border-color .35s ease, background .35s ease;
+  }
+  .focus-card:nth-child(1){ border-top-color:var(--gold); }
+  .focus-card:nth-child(2){ border-top-color:var(--teal-soft); }
+  .focus-card:nth-child(3){ border-top-color:var(--clay); }
+  .focus-card:nth-child(4){ border-top-color:var(--sand-dim); }
+  .focus-card:hover{ background:var(--bg-panel-2); }
+  .focus-index{ font-family:var(--mono); font-size:12px; color:var(--sand-dim); }
+  .focus-title{
+    font-family:var(--serif); font-size:20px; margin-top:20px; color:var(--sand);
+  }
+  .focus-desc{ font-size:14.5px; color:var(--sand-dim); margin-top:12px; }
+
+  /* ---------- vision ---------- */
+  .vision{ background:var(--bg-panel); }
+  .vision-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:70px;
+    align-items:start;
+  }
+  .vision-text p{ color:var(--sand-dim); font-size:16.5px; margin-bottom:20px; max-width:52ch; }
+  .vision-text strong{ color:var(--sand); font-weight:600; }
+  .vision-list{ border-top:1px solid var(--line); }
+  .vision-list li{
+    display:flex; align-items:flex-start; gap:18px;
+    padding:26px 0; border-bottom:1px solid var(--line);
+  }
+  .vision-list .mark{
+    font-family:var(--serif); font-style:italic; color:var(--gold); font-size:20px; line-height:1.4;
+  }
+  .vision-list .vtext strong{ display:block; color:var(--sand); font-size:16px; margin-bottom:6px; }
+  .vision-list .vtext span{ color:var(--sand-dim); font-size:14.5px; }
+
+  /* ---------- contact ---------- */
+  .contact{ text-align:center; }
+  .contact h2{ margin:0 auto 20px; }
+  .contact .section-sub{ margin:0 auto 46px; }
+  .contact-actions{ display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
+  .socials{
+    margin-top:70px; display:flex; justify-content:center; gap:34px;
+    font-family:var(--mono); font-size:13.5px; color:var(--sand-dim);
+  }
+  .socials a{ position:relative; transition:color .3s ease; }
+  .socials a:hover{ color:var(--gold); }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+    text-align:center;
+    color:var(--sand-dim);
+    font-size:13px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .focus-grid{ grid-template-columns:1fr 1fr; }
+    .vision-grid{ grid-template-columns:1fr; gap:40px; }
+    .navlinks{
+      position:fixed; top:76px; right:0; height:calc(100vh - 76px);
+      background:var(--bg-panel); flex-direction:column; gap:0;
+      width:240px; padding:20px 0; transform:translateX(100%);
+      transition:transform .35s ease; border-left:1px solid var(--line);
+    }
+    .navlinks.open{ transform:translateX(0); }
+    .navlinks a{ padding:16px 28px; width:100%; }
+    .navtoggle{
+      display:flex; flex-direction:column; gap:5px; cursor:pointer; z-index:101;
+      background:none; border:none;
+    }
+    .navtoggle span{ width:22px; height:1.5px; background:var(--sand); }
+  }
+  @media (max-width:560px){
+    .focus-grid{ grid-template-columns:1fr; }
+    section{ padding:88px 0; }
+    .wrap{ padding:0 22px; }
   }
 </style>
 </head>
 <body>
 
-<div id="embers"></div>
+<div class="grain"></div>
 
-<header class="nav">
-  <div class="nav-inner">
-    <div class="nav-mark"><span class="dot"></span> md-al-momin.dev</div>
-    <nav class="nav-links">
-      <a href="#about">about</a>
-      <a href="#journey">journey</a>
-      <a href="#goals">goals</a>
-      <a href="#contact">contact</a>
-    </nav>
-  </div>
+<header>
+  <nav class="wrap">
+    <a href="#top" class="monogram">AM</a>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#journey" data-nav>Journey</a></li>
+      <li><a href="#focus" data-nav>Focus</a></li>
+      <li><a href="#vision" data-nav>Vision</a></li>
+      <li><a href="#contact" data-nav>Contact</a></li>
+    </ul>
+    <button class="navtoggle" id="navtoggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 </header>
 
-<section class="hero wrap">
-  <div class="hero-eyebrow"><span class="prompt">~/momin$</span> whoami</div>
-  <h1>MD AL MOMIN<br><span class="accent">builds software.</span></h1>
-  <div class="type-line" id="typeLine"><span class="cursor"></span></div>
-
-  <div class="hero-meta">
-    <div>
-      <span class="label">BASED IN</span>
-      <span class="value">Khulna, Bangladesh</span>
-    </div>
-    <div>
-      <span class="label">STUDYING</span>
-      <span class="value">B.Sc. in CSE, Southeast University</span>
-    </div>
-    <div>
-      <span class="label">FOCUS</span>
-      <span class="value">Programming &amp; Software Engineering</span>
+<section class="hero" id="top">
+  <div class="hero-canvas" id="heroCanvas"></div>
+  <div class="wrap hero-content">
+    <div class="eyebrow-line"><span class="dot"></span>Khulna, Bangladesh → Dhaka, Bangladesh</div>
+    <h1 class="name">MD AL<br><em>MOMIN</em></h1>
+    <p class="hero-role">
+      A <strong>Computer Science &amp; Engineering</strong> undergraduate at Southeast University, Dhaka —
+      building a path from the rivers of Khulna toward a career writing software that matters.
+    </p>
+    <div class="hero-cta">
+      <a href="#journey" class="btn btn-solid">See my journey</a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
     </div>
   </div>
+  <div class="scrollcue"><div class="stem"></div>scroll</div>
 </section>
 
-<section class="section wrap" id="about">
-  <div class="section-head">
-    <span class="section-num">01</span>
-    <span class="section-title">About</span>
-  </div>
-  <p class="about-text">
-    I'm <strong>MD AL MOMIN</strong>, a computer science student from <strong>Khulna</strong>
-    who's genuinely passionate about programming — not just as a subject I study, but
-    as the thing I keep coming back to outside of class too. I'm currently pursuing my
-    <strong>B.Sc. in Computer Science and Engineering</strong> at
-    <strong>Southeast University</strong>, building the foundation for the career I want:
-    one where I'm writing software that matters, at a level that keeps challenging me.
-  </p>
-  <div class="tags">
-    <span class="tag">#problem-solving</span>
-    <span class="tag">#software-engineering</span>
-    <span class="tag">#lifelong-learner</span>
-    <span class="tag">#future-grad-student</span>
-  </div>
-</section>
-
-<section class="section wrap" id="journey">
-  <div class="section-head">
-    <span class="section-num">02</span>
-    <span class="section-title">Journey so far</span>
-  </div>
-
-  <div class="timeline">
-    <div class="t-item">
-      <div class="t-num">01</div>
-      <div class="t-year">2022</div>
-      <div class="t-title">SSC — Khulna Zilla School</div>
-      <div class="t-sub">Completed secondary education in Khulna.</div>
+<section class="journey" id="journey">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>The journey so far</h2>
     </div>
-    <div class="t-item">
-      <div class="t-num">02</div>
-      <div class="t-year">2024</div>
-      <div class="t-title">HSC — Govt. Sundarban Adarsha College</div>
-      <div class="t-sub">Completed higher secondary education.</div>
-    </div>
-    <div class="t-item">
-      <div class="t-num">03</div>
-      <div class="t-year">Present</div>
-      <div class="t-title">B.Sc. in CSE — Southeast University</div>
-      <div class="t-sub">Currently studying, with a growing focus on software engineering.</div>
-    </div>
-  </div>
-</section>
-
-<section class="section wrap" id="goals">
-  <div class="section-head">
-    <span class="section-num">03</span>
-    <span class="section-title">Where I'm headed</span>
-  </div>
-
-  <div class="goal-grid">
-    <div class="goal-card">
-      <div class="goal-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#ff6b52" stroke-width="1.6"><path d="M4 17l6-6-6-6M12 19h8"/></svg>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2022</div>
+        <div class="tl-title">Khulna Zilla School</div>
+        <div class="tl-place">Khulna — Secondary School Certificate (SSC)</div>
+        <div class="tl-tag">Where it started</div>
       </div>
-      <div class="goal-title">Software Engineer</div>
-      <div class="goal-desc">Turn my current CSE studies into a career actually writing and shipping software.</div>
-    </div>
-    <div class="goal-card">
-      <div class="goal-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#ff6b52" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2c2.7 2.6 4 5.9 4 10s-1.3 7.4-4 10c-2.7-2.6-4-5.9-4-10s1.3-7.4 4-10z"/></svg>
+      <div class="tl-item">
+        <div class="tl-year">2024</div>
+        <div class="tl-title">Govt. Sundarban Adarsha College</div>
+        <div class="tl-place">Khulna — Higher Secondary Certificate (HSC)</div>
+        <div class="tl-tag">Building the foundation</div>
       </div>
-      <div class="goal-title">MSc &amp; PhD Abroad</div>
-      <div class="goal-desc">Go abroad to pursue graduate study and go deeper into the field than a bachelor's allows.</div>
-    </div>
-    <div class="goal-card">
-      <div class="goal-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#ff6b52" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+      <div class="tl-item">
+        <div class="tl-year">Present</div>
+        <div class="tl-title">Southeast University</div>
+        <div class="tl-place">Dhaka — BSc in Computer Science &amp; Engineering, in progress</div>
+        <div class="tl-tag">Currently here</div>
       </div>
-      <div class="goal-title">A Tech Giant</div>
-      <div class="goal-desc">Work at a major technology company, building products used at real scale.</div>
-    </div>
-  </div>
-
-  <div class="terminal">
-    <div class="terminal-bar"><span></span><span></span><span></span></div>
-    <div class="terminal-body">
-      <div><span class="c">// current status</span></div>
-      <div><span class="k">const</span> momin = {</div>
-      <div>&nbsp;&nbsp;name: <span class="s">"MD AL MOMIN"</span>,</div>
-      <div>&nbsp;&nbsp;role: <span class="s">"CSE Undergrad"</span>,</div>
-      <div>&nbsp;&nbsp;passion: <span class="s">"programming"</span>,</div>
-      <div>&nbsp;&nbsp;status: <span class="s">"building skills, chasing goals"</span>,</div>
-      <div>&nbsp;&nbsp;openTo: [<span class="s">"internships"</span>, <span class="s">"projects"</span>, <span class="s">"mentorship"</span>]</div>
-      <div>};</div>
     </div>
   </div>
 </section>
 
-<footer class="wrap" id="contact">
-  <div class="footer-title">Let's build something, or just talk code.</div>
-  <p class="footer-sub">
-    I'm always glad to connect with people who care about software — whether that's a project,
-    an opportunity, or advice on the path ahead.
-  </p>
-  <a class="btn" href="mailto:hello@example.com">Say hello →</a>
-
-  <div class="footer-row">
-    <span>© 2026 MD AL MOMIN. Khulna, Bangladesh.</span>
-    <span id="clock"></span>
+<section class="focus" id="focus">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>What drives the work</h2>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <div class="focus-index">A</div>
+        <div class="focus-title">Programming</div>
+        <div class="focus-desc">Where the real interest lives — turning logic into things that run, break, and get better.</div>
+      </div>
+      <div class="focus-card">
+        <div class="focus-index">B</div>
+        <div class="focus-title">Software Engineering</div>
+        <div class="focus-desc">Learning to build software that is not just functional, but structured, maintainable, and honest.</div>
+      </div>
+      <div class="focus-card">
+        <div class="focus-index">C</div>
+        <div class="focus-title">Problem Solving</div>
+        <div class="focus-desc">The part of computer science that never gets old — breaking hard problems into solvable pieces.</div>
+      </div>
+      <div class="focus-card">
+        <div class="focus-index">D</div>
+        <div class="focus-title">Continuous Learning</div>
+        <div class="focus-desc">Every project, course, and bug is a step in a longer plan — treated that way on purpose.</div>
+      </div>
+    </div>
   </div>
+</section>
+
+<section class="vision" id="vision">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Where this is headed</h2>
+    </div>
+    <div class="vision-grid">
+      <div class="vision-text">
+        <p>Right now, the focus is finishing a <strong>BSc in Computer Science and Engineering</strong> in Dhaka and becoming a capable, well-rounded <strong>software engineer</strong>.</p>
+        <p>Beyond that, the plan reaches further — graduate study abroad, and a seat at a company building software at global scale.</p>
+      </div>
+      <ul class="vision-list">
+        <li>
+          <span class="mark">"</span>
+          <div class="vtext"><strong>Software Engineer</strong><span>Build a strong career writing production-grade software.</span></div>
+        </li>
+        <li>
+          <span class="mark">"</span>
+          <div class="vtext"><strong>MSc &amp; PhD, abroad</strong><span>Pursue graduate studies internationally, given the opportunity.</span></div>
+        </li>
+        <li>
+          <span class="mark">"</span>
+          <div class="vtext"><strong>A tech giant</strong><span>Work at a company shaping software at global scale.</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head" style="justify-content:center; margin-bottom:20px;">
+      <span class="section-num">04</span>
+      <h2>Let's talk</h2>
+    </div>
+    <p class="section-sub" style="margin-left:auto; margin-right:auto;">
+      Open to conversations about internships, collaborations, or just software. Reach out — replace these with your real details.
+    </p>
+    <div class="contact-actions">
+      <a href="mailto:your.email@example.com" class="btn btn-solid">your.email@example.com</a>
+      <a href="#top" class="btn btn-outline">Back to top</a>
+    </div>
+    <div class="socials">
+      <a href="#" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">MD AL MOMIN — Khulna → Dhaka. Built with intent.</div>
 </footer>
 
 <script>
-  // Ember particles
-  const emberField = document.getElementById('embers');
-  const EMBER_COUNT = 26;
-  for(let i=0;i<EMBER_COUNT;i++){
-    const e = document.createElement('div');
-    e.className = 'ember';
-    const left = Math.random()*100;
-    const dur = 6 + Math.random()*8;
-    const delay = Math.random()*10;
-    const drift = (Math.random()*60-30) + 'px';
-    const size = 2 + Math.random()*3;
-    e.style.left = left + 'vw';
-    e.style.width = size + 'px';
-    e.style.height = size + 'px';
-    e.style.animationDuration = dur + 's';
-    e.style.animationDelay = delay + 's';
-    e.style.setProperty('--drift', drift);
-    emberField.appendChild(e);
-  }
+  // Hero canvas: layered mangrove-root lines morphing into circuit paths
+  (function(){
+    const host = document.getElementById('heroCanvas');
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 1200 800');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
 
-  // Typing effect
-  const lines = [
-    "passionate about programming, one commit at a time.",
-    "currently: B.Sc. in CSE @ Southeast University.",
-    "next: software engineer, then grad school abroad."
-  ];
-  const el = document.getElementById('typeLine');
-  const cursor = el.querySelector('.cursor');
-  let li = 0, ci = 0, deleting = false;
+    const defs = document.createElementNS(svgNS, 'defs');
+    const grad = document.createElementNS(svgNS, 'linearGradient');
+    grad.setAttribute('id', 'lineGrad');
+    grad.setAttribute('x1', '0%'); grad.setAttribute('y1', '0%');
+    grad.setAttribute('x2', '100%'); grad.setAttribute('y2', '100%');
+    grad.innerHTML = '<stop offset="0%" stop-color="#1F6F5C"/><stop offset="100%" stop-color="#E8A33D"/>';
+    defs.appendChild(grad);
+    svg.appendChild(defs);
 
-  function tick(){
-    const current = lines[li];
-    if(!deleting){
-      ci++;
-      if(ci > current.length){
-        deleting = true;
-        setTimeout(tick, 1400);
-        return;
-      }
-    } else {
-      ci--;
-      if(ci < 0){
-        deleting = false;
-        li = (li + 1) % lines.length;
-        ci = 0;
-      }
-    }
-    el.textContent = current.slice(0, ci);
-    el.appendChild(cursor);
-    setTimeout(tick, deleting ? 28 : 42);
-  }
-  tick();
+    const paths = [
+      "M -50,650 C 150,600 250,700 400,640 C 600,560 700,680 900,600 C 1050,540 1150,600 1260,560",
+      "M -50,540 C 180,500 260,600 460,520 C 640,450 760,560 960,480 C 1090,430 1180,480 1260,450",
+      "M -50,730 C 200,690 300,760 520,700 C 700,650 820,730 1000,680 C 1100,650 1180,690 1260,660",
+      "M -50,440 C 160,400 280,470 480,410 C 660,360 780,440 980,380 C 1100,340 1180,380 1260,360"
+    ];
 
-  // Scroll reveal for timeline
-  const items = document.querySelectorAll('.t-item');
+    paths.forEach((d, i) => {
+      const p = document.createElementNS(svgNS, 'path');
+      p.setAttribute('d', d);
+      p.setAttribute('fill', 'none');
+      p.setAttribute('stroke', 'url(#lineGrad)');
+      p.setAttribute('stroke-width', i === 0 ? '1.6' : '1');
+      p.setAttribute('opacity', 0.55 - i * 0.1);
+      p.style.strokeDasharray = '2600';
+      p.style.strokeDashoffset = '2600';
+      p.style.animation = `drawline 2.8s cubic-bezier(.2,.7,.2,1) ${i * 0.22}s forwards`;
+      svg.appendChild(p);
+    });
+
+    // faint circuit nodes along the top path, appearing after draw-in
+    const nodePositions = [[400,640],[700,680],[960,480],[1000,680]];
+    nodePositions.forEach((pos, i) => {
+      const c = document.createElementNS(svgNS, 'circle');
+      c.setAttribute('cx', pos[0]); c.setAttribute('cy', pos[1]); c.setAttribute('r', 3.4);
+      c.setAttribute('fill', '#E8A33D');
+      c.style.opacity = 0;
+      c.style.animation = `nodefade 1s ease ${1.6 + i * 0.18}s forwards`;
+      svg.appendChild(c);
+    });
+
+    host.appendChild(svg);
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes drawline{ to{ stroke-dashoffset:0; } }
+      @keyframes nodefade{ to{ opacity:0.9; } }
+    `;
+    document.head.appendChild(style);
+  })();
+
+  // Scroll-reveal for timeline items (content genuinely sequential)
+  const tlItems = document.querySelectorAll('.tl-item');
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        e.target.classList.add('show');
-        io.unobserve(e.target);
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+  }, { threshold: 0.35 });
+  tlItems.forEach(item => io.observe(item));
+
+  // Active nav link on scroll
+  const navLinks = document.querySelectorAll('[data-nav]');
+  const sections = ['journey','focus','vision','contact'].map(id => document.getElementById(id));
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = document.querySelector(`[data-nav][href="#${entry.target.id}"]`);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
       }
     });
-  }, { threshold: 0.25 });
-  items.forEach(i => io.observe(i));
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(sec => sec && navObserver.observe(sec));
 
-  // Live clock (Bangladesh time)
-  function updateClock(){
-    const now = new Date();
-    const opts = { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false, timeZone:'Asia/Dhaka' };
-    document.getElementById('clock').textContent = 'Dhaka time — ' + now.toLocaleTimeString('en-GB', opts);
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
+  // Mobile nav toggle
+  const toggle = document.getElementById('navtoggle');
+  const navlinksEl = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => navlinksEl.classList.toggle('open'));
+  navlinksEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinksEl.classList.remove('open')));
 </script>
 
 </body>
